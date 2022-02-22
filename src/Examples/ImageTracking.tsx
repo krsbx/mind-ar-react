@@ -28,6 +28,16 @@ const ExampleImageTracking: React.FC = () => {
             color-space="sRGB"
             embedded
             renderer="colorManagement: true, physicallyCorrectLights"
+            device-orientation-permission-ui
+            stats
+            arEvents={[
+              {
+                eventName: 'targetFound',
+                callbacks: (e: any) => {
+                  console.log('Target Found!');
+                },
+              },
+            ]}
           >
             <Assets>
               <img

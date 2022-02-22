@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageTracking } from 'components/AR';
+import ImageTracking from 'Examples/ImageTracking';
 
 function App() {
   return (

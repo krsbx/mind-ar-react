@@ -75,13 +75,13 @@ export interface IPrimitive {
 }
 
 export interface IRounded {
-  'theta-start': number;
-  'theta-length': number;
+  'theta-start'?: number;
+  'theta-length'?: number;
 }
 
 export interface IRadius {
-  'radius-top': number;
-  'radius-bottom': number;
+  'radius-top'?: number;
+  'radius-bottom'?: number;
 }
 
 export interface IBox extends Omit<IPrimitive, 'type'> {}
@@ -90,13 +90,13 @@ export interface ICircle extends Omit<IPrimitive, 'type'>, IRounded {
   segments?: number;
 }
 export interface ICone extends Omit<IPrimitive, 'type'>, IRounded, IRadius {
-  'open-ended': boolean;
+  'open-ended'?: boolean;
 }
 export interface ICylinder extends ICone {}
 export interface IPlane extends IBox {}
 export interface ISphere extends ICircle {
-  'phi-start': number;
-  'phi-length': number;
+  'phi-start'?: number;
+  'phi-length'?: number;
 }
 export interface IGLTFModel extends Omit<IPrimitive, 'type'> {}
 
@@ -138,14 +138,17 @@ export interface IScene {
   embedded?: boolean;
   'vr-mode-ui'?: boolean;
   'device-orientation-permission-ui'?: boolean;
-  'mindar-image': {
-    imageTargetSrc: string;
+  'mindar-image'?: {
+    imageTargetSrc?: string;
     autoStart?: boolean;
     uiLoading?: 'yes' | 'no';
     uiError?: 'yes' | 'no';
     uiScanning?: 'yes' | 'no';
   };
+  'mindar-face'?: boolean;
   renderer?: string;
+  children?: React.ReactNode;
+  arEvents?: IAREvents[] | IAREvents;
 }
 
 export interface IItems {
@@ -158,7 +161,16 @@ export interface IMarker extends IEntity {
   targetIndex: number;
 }
 
+export interface IFaces extends IEntity {
+  anchorIndex?: number;
+}
+
 export interface ICamera {
   position: IAxis;
   'look-controls'?: boolean;
+}
+
+export interface IAREvents {
+  eventName: 'arReady' | 'arError' | 'targetFound' | 'targetLost';
+  callbacks: (e: any) => void;
 }
