@@ -1,26 +1,21 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { getAnimations, propsConverter } from 'utils/handler';
 import { IPrimitive } from 'utils/interfaces';
 
-const Primitive: React.FC<IPrimitive> = ({
-  type,
-  animation,
-  children,
-  ...props
-}) => {
-  const animations = animation && getAnimations(animation);
+const Primitive = React.forwardRef<any, IPrimitive>(
+  ({ type, animation, children, ...props }, ref) => {
+    const animations = animation && getAnimations(animation);
 
-  const markerRef = useRef<any>(null);
-
-  return React.createElement(
-    type,
-    {
-      ...propsConverter(props),
-      ...animations,
-      ref: markerRef,
-    },
-    children
-  );
-};
+    return React.createElement(
+      type,
+      {
+        ...propsConverter(props),
+        ...animations,
+        ref,
+      },
+      children
+    );
+  }
+);
 
 export default Primitive;

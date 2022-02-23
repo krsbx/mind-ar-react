@@ -71,6 +71,7 @@ export interface IPrimitive {
   depth?: number;
   'segments-height'?: number;
   'segments-width'?: number;
+  children?: React.ReactNode;
   ref?: any;
 }
 
