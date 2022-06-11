@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aframe": "^1.3.0",
     "lodash": "^4.17.21",
-    "mind-ar": "^1.1.4",
+    "mind-ar-ts": "^0.5.1-beta1b",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
@@ -46,5 +46,20 @@
     "@types/node": "^16.11.25",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11"
+  },
+  "description": "A Mind AR Modules for React",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krsbx/mind-ar-react.git"
+  },
+  "keywords": [
+    "react",
+    "augmented-reality",
+    "mind-ar"
+  ],
+  "author": "krsbx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krsbx/mind-ar-react/issues"
   }
 }

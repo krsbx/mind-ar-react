@@ -1,40 +1,41 @@
 import React, { useRef } from 'react';
+import { generateFaceProps, generateImageProps } from 'utils/defaultprops';
 import { concatProps, mergeRefs, propsConverter } from 'utils/handler';
 import { IScene } from 'utils/interfaces';
-import useActivator from 'utils/useActivator';
 
-const Scene = React.forwardRef<any, IScene>(
-  (
+const Scene = React.forwardRef<any, IScene>(({ children, ...props }, ref) => {
+  const sceneRef = useRef<any>(null);
+  const {
+    vrModeUI,
+    mindARImage,
+    orientationUI,
+    arEvents,
+    colorSpace,
+    mindARFace,
+    ...rest
+  } = props;
+
+  return React.createElement(
+    'a-scene',
     {
-      children,
-      'vr-mode-ui': vrModeUi,
-      'mindar-image': mindARImage,
-      'device-orientation-permission-ui': orientationUI,
-      arEvents,
-      ...props
-    },
-    ref
-  ) => {
-    const sceneRef = useRef<any>(null);
-
-    useActivator(sceneRef, arEvents);
-
-    return React.createElement(
-      'a-scene',
-      {
-        ...propsConverter(props),
-        ...{
-          ...(mindARImage && { 'mindar-image': concatProps(mindARImage) }),
-          'vr-mode-ui': `enabled: ${vrModeUi || false}`,
-          'device-orientation-permission-ui': `enabled: ${
-            orientationUI || false
-          }`,
-          ref: mergeRefs(sceneRef, ref),
-        },
+      ...propsConverter(rest),
+      ...{
+        ...(mindARImage && {
+          'mindar-image': concatProps(generateImageProps(mindARImage)),
+        }),
+        ...(mindARFace && {
+          'mindar-face': concatProps(generateFaceProps(mindARFace)),
+        }),
+        ...(colorSpace && { 'color-space': colorSpace }),
+        'vr-mode-ui': `enabled: ${vrModeUI ?? false}`,
+        'device-orientation-permission-ui': `enabled: ${
+          orientationUI ?? false
+        }`,
+        ref: mergeRefs(sceneRef, ref),
       },
-      children
-    );
-  }
-);
+    },
+    children
+  );
+});
 
 export default Scene;
