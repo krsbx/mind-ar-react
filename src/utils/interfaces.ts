@@ -1,3 +1,6 @@
+import React from 'react';
+import { ANIMATION_EASING, COMPILER_STATE, PRIMITIVE_TYPES } from './constant';
+
 export interface IAxis {
   x: number;
   y: number;
@@ -11,35 +14,7 @@ export interface IAnimation {
   delay?: number;
   dir?: 'normal' | 'alternate' | 'reverse';
   dur?: number;
-  easing?:
-    | 'easeInQuad'
-    | 'easeOutQuad'
-    | 'easeInOutQuad'
-    | 'easeInCubic'
-    | 'easeOutCubic'
-    | 'easeInOutCubic'
-    | 'easeInQuart'
-    | 'easeOutQuart'
-    | 'easeInOutQuart'
-    | 'easeInQuint'
-    | 'easeOutQuint'
-    | 'easeInOutQuint'
-    | 'easeInSine'
-    | 'easeOutSine'
-    | 'easeInOutSine'
-    | 'easeInExpo'
-    | 'easeOutExpo'
-    | 'easeInOutExpo'
-    | 'easeInCirc'
-    | 'easeOutCirc'
-    | 'easeInOutCirc'
-    | 'easeInBack'
-    | 'easeOutBack'
-    | 'easeInOutBack'
-    | 'easeInElastic'
-    | 'easeOutElastic'
-    | 'easeInOutElastic'
-    | 'linear';
+  easing?: typeof ANIMATION_EASING[keyof typeof ANIMATION_EASING];
   elasticity?: number;
   loop?: boolean;
   round?: boolean;
@@ -55,15 +30,7 @@ export interface IPrimitive {
   rotation?: IAxis;
   animation?: IAnimation | IAnimation[];
   visible?: boolean;
-  type:
-    | 'a-box'
-    | 'a-circle'
-    | 'a-cone'
-    | 'a-cylinder'
-    | 'a-gltf-model'
-    | 'a-plane'
-    | 'a-sphere'
-    | 'a-entity';
+  type: typeof PRIMITIVE_TYPES[keyof typeof PRIMITIVE_TYPES];
   height?: number;
   width?: number;
   src?: string;
@@ -195,3 +162,7 @@ export interface IAREvents {
   eventName: 'arReady' | 'arError' | 'targetFound' | 'targetLost';
   callbacks: (e: any) => void;
 }
+
+export type ReactSetter<T> = React.Dispatch<React.SetStateAction<T>>;
+
+export type CompilerState = typeof COMPILER_STATE[keyof typeof COMPILER_STATE];
