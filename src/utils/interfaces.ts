@@ -14,7 +14,7 @@ export interface IAnimation {
   easing?:
     | 'easeInQuad'
     | 'easeOutQuad'
-    | 'easeInOutQuad|'
+    | 'easeInOutQuad'
     | 'easeInCubic'
     | 'easeOutCubic'
     | 'easeInOutCubic'
@@ -104,6 +104,7 @@ export interface IGLTFModel extends Omit<IPrimitive, 'type'> {}
 export interface IEntity extends Omit<IPrimitive, 'type'> {
   geometry?: string;
   'gltf-model'?: string;
+  'mindar-face-occluder'?: boolean;
 }
 
 export interface IText {
@@ -134,22 +135,40 @@ export interface IText {
 export type AnimationKey = keyof IAnimation;
 export type AnimationType = Record<keyof IAnimation, any>;
 
+export interface IDefaultARProps {
+  autoStart?: boolean;
+  uiLoading?: string;
+  uiScanning?: string;
+  uiError?: string;
+  filterMinCF?: number;
+  filterBeta?: number;
+  shouldFaceUser?: boolean;
+}
+
+export interface IMindARImage extends IDefaultARProps {
+  imageTargetSrc: string;
+  maxTrack?: number;
+  missTolerance?: number;
+  warmupTolerance?: number;
+  showStats?: boolean;
+  reshowScanning?: boolean;
+}
+
+export interface IMindARFace extends IDefaultARProps {
+  faceOccluder?: boolean;
+}
+
 export interface IScene {
   stats?: boolean;
   embedded?: boolean;
-  'vr-mode-ui'?: boolean;
-  'device-orientation-permission-ui'?: boolean;
-  'mindar-image'?: {
-    imageTargetSrc?: string;
-    autoStart?: boolean;
-    uiLoading?: 'yes' | 'no';
-    uiError?: 'yes' | 'no';
-    uiScanning?: 'yes' | 'no';
-  };
-  'mindar-face'?: boolean;
+  orientationUI?: boolean;
+  mindARImage?: IMindARImage;
+  mindARFace?: IMindARFace;
+  vrModeUI?: boolean;
   renderer?: string;
   children?: React.ReactNode;
   arEvents?: IAREvents[] | IAREvents;
+  colorSpace?: string;
 }
 
 export interface IItems {
@@ -169,6 +188,7 @@ export interface IFaces extends IEntity {
 export interface ICamera {
   position: IAxis;
   'look-controls'?: boolean;
+  active?: boolean;
 }
 
 export interface IAREvents {

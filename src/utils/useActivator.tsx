@@ -5,16 +5,20 @@ import { IAREvents } from './interfaces';
 // use for activating AR
 const useActivator = (
   sceneRef: React.MutableRefObject<any>,
-  arEvents?: IAREvents[] | IAREvents
+  arEvents?: IAREvents[] | IAREvents,
+  faceTrack?: boolean
 ) => {
   useEffect(() => {
+    const systemRef = faceTrack ? 'mindar-face-system' : 'mindar-image-system';
+
     const sceneEl = sceneRef.current;
-    const arSystem = sceneEl.systems['mindar-image-system'];
+    const arSystem = sceneEl.systems[systemRef];
+
     sceneEl.addEventListener('renderstart', () => {
       arSystem.start(); // start AR
     });
 
-    // Convert arEvents to array if nots
+    // Convert arEvents to array if not an array
     const events = _.isNil(arEvents)
       ? []
       : _.isArray(arEvents)
