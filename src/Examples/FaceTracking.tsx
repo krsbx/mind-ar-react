@@ -1,49 +1,35 @@
 import React from 'react';
-import { FaceTracking } from 'components/AR';
-import Scene from 'components/Scene';
-import Camera from 'components/Camera';
-import Faces from 'components/Faces';
+import FaceTracking from 'components/AR/FaceTracking';
+import { Faces, Camera, Scene } from 'components';
 import { Sphere } from 'components/Primitive';
-import Assets, { Items } from 'components/Assets';
 
 const ExampleFaceTracking = () => {
   return (
     <FaceTracking>
       <Scene
-        mindar-face
+        mindARFace={{}}
+        colorSpace="sRGB"
         embedded
-        mindar-image={{
-          autoStart: true,
-          uiError: 'yes',
-          uiLoading: 'no',
-          uiScanning: 'yes',
-        }}
         renderer="colorManagement: true, physicallyCorrectLights"
-        color-space="sRGB"
-        arEvents={[
-          {
-            eventName: 'targetFound',
-            callbacks: (e: any) => {
-              console.log('Face Found!');
-            },
-          },
-        ]}
+        orientationUI={false}
+        vrModeUI={false}
+        stats
       >
-        <Assets>
-          <Items
-            id="glassesModel"
-            src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/examples/image-tracking/assets/card-example/softmind/scene.gltf"
-          />
-        </Assets>
         <Camera
-          position={{
-            x: 0,
-            y: 0,
-            z: 0,
-          }}
+          position={{ x: 0, y: 0, z: 0 }}
+          look-controls={false}
+          active={false}
         />
-        <Faces>
-          <Sphere radius={0.1} color={'green'} />
+        <Faces anchorIndex={1}>
+          <Sphere
+            radius={0.1}
+            color={'green'}
+            position={{
+              x: 0,
+              y: 0,
+              z: 0,
+            }}
+          />
         </Faces>
       </Scene>
     </FaceTracking>

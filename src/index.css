@@ -17,9 +17,8 @@ code {
 }
 
 .container {
-  margin: 20px auto;
-  position: relative;
-  height: 300px;
-  width: 600px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
 }
