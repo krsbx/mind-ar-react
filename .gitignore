@@ -11,6 +11,8 @@ package-lock.json
 
 # production
 /build
+/dist
+mind-ar-react-*.tgz
 
 # misc
 .DS_Store
