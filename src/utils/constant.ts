@@ -55,6 +55,7 @@ export const PRIMITIVE_TYPES = {
   CONE: 'a-cone',
   CYLINDER: 'a-cylinder',
   GLTF_MODEL: 'a-gltf-model',
+  IMAGE: 'a-image',
   PLANE: 'a-plane',
   SPHERE: 'a-sphere',
   ENTITY: 'a-entity',

@@ -63,6 +63,16 @@ export interface ICone extends Omit<IPrimitive, 'type'>, IRounded, IRadius {
   'open-ended'?: boolean;
 }
 export type ICylinder = ICone;
+export interface IImage extends Omit<IPrimitive, 'type' | 'material'> {
+  metalness?: number;
+  options?: number;
+  repeat?: { x: number; y: number };
+  roughness?: number;
+  shader?: string;
+  side?: string;
+  transparent?: boolean;
+}
+
 export type IPlane = IBox;
 export interface ISphere extends ICircle {
   'phi-start'?: number;
