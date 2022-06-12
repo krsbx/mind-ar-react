@@ -7,7 +7,7 @@ import { CompilerState } from '../utils/interfaces';
 import VisualTab from './Compiler/VisualTab';
 import UploadTab from './Compiler/UploadTab';
 
-const ImageCompiler = () => {
+const ExampleImageCompiler = () => {
   const [dataList, setDataList] = useState<ICompilerData[]>([]);
   const [dropzone, setDropzone] = useState<Dropzone>();
   const [percentage, setPercentage] = useState<number | null>(null);
@@ -58,4 +58,4 @@ const ImageCompiler = () => {
   return <RenderTab />;
 };
 
-export default ImageCompiler;
+export default ExampleImageCompiler;
