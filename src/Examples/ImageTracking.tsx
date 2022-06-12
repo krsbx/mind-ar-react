@@ -4,14 +4,12 @@ import ImageTracking from 'components/AR/ImageTracking';
 import { Camera, Marker, Scene } from 'components';
 import { GLTFModel, Plane } from 'components/Primitive';
 
-const ExampleImageTracking: React.FC = () => {
+const ExampleImageTracking = () => {
   const [started, setStarted] = useState(false);
 
   return (
     <ImageTracking>
-      <button onClick={() => setStarted(!started)}>
-        {started ? 'Stop' : 'Start'}
-      </button>
+      <button onClick={() => setStarted(!started)}>{started ? 'Stop' : 'Start'}</button>
       {started && (
         <Scene
           mindARImage={{

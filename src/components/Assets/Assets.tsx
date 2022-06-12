@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Assets: React.FC = ({ children }) =>
+const Assets = ({ children }: { children?: React.ReactNode }) =>
   React.createElement('a-assets', {}, children);
 
 export default Assets;
