@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Assets, { Items } from 'components/Assets';
-import ImageTracking from 'components/AR/ImageTracking';
-import { Camera, Marker, Scene } from 'components';
-import { GLTFModel, Plane } from 'components/Primitive';
+import Assets, { Items } from '../components/Assets';
+import ImageTracking from '../components/AR/ImageTracking';
+import { Camera, Marker, Scene } from '../components';
+import { GLTFModel, Plane } from '../components/Primitive';
 
 const ExampleImageTracking = () => {
   const [started, setStarted] = useState(false);

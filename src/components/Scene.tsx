@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import React, { useRef } from 'react';
 import { Scene as AScene } from 'aframe';
-import { generateFaceProps, generateImageProps } from 'utils/defaultprops';
-import { concatProps, mergeRefs, propsConverter } from 'utils/handler';
-import { IScene } from 'utils/interfaces';
+import { generateFaceProps, generateImageProps } from '../utils/defaultprops';
+import { concatProps, mergeRefs, propsConverter } from '../utils/handler';
+import { IScene } from '../utils/interfaces';
 
 const Scene = React.forwardRef<AScene, IScene>(({ children, ...props }, ref) => {
   const sceneRef = useRef<AScene>(null);

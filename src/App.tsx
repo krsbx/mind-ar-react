@@ -1,5 +1,5 @@
 import React from 'react';
-import FaceTracking from 'Examples/FaceTracking';
+import FaceTracking from './Examples/FaceTracking';
 
 function App() {
   return (

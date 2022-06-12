@@ -1,6 +1,6 @@
 import React from 'react';
-import { getAnimations, propsConverter } from 'utils/handler';
-import { IPrimitive } from 'utils/interfaces';
+import { IPrimitive } from '../../utils/interfaces';
+import { getAnimations, propsConverter } from '../../utils/handler';
 
 const Primitive = React.forwardRef<any, IPrimitive>(
   ({ type, animation, children, ...props }, ref) => {

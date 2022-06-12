@@ -1,6 +1,6 @@
 import React from 'react';
-import { propsConverter } from 'utils/handler';
-import { IText } from 'utils/interfaces';
+import { propsConverter } from '../utils/handler';
+import { IText } from '../utils/interfaces';
 
 const Text = React.forwardRef<any, IText & { children?: React.ReactNode }>(
   ({ children, ...props }, ref) =>

@@ -2,7 +2,7 @@ import 'mind-ar-ts';
 import 'mind-ar-ts/dist/mindar-image.prod';
 import { useCallback } from 'react';
 import { ICompilerData } from 'mind-ar-ts/src/image-target/utils/types/compiler';
-import { CompilerState, ReactSetter } from 'utils/interfaces';
+import { CompilerState, ReactSetter } from './interfaces';
 import { COMPILER_STATE } from './constant';
 
 const useCompiler = ({ setDataList, setExportedBuffer, setStep, setPercentage }: Params) => {

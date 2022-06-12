@@ -19,11 +19,7 @@ const useActivator = (
     });
 
     // Convert arEvents to array if not an array
-    const events = _.isNil(arEvents)
-      ? []
-      : _.isArray(arEvents)
-      ? arEvents
-      : [arEvents];
+    const events = _.isNil(arEvents) ? [] : _.isArray(arEvents) ? arEvents : [arEvents];
 
     // Get all the events from the arEvents array
     // and add them to the scene
@@ -40,7 +36,7 @@ const useActivator = (
         sceneEl.removeEventListener(eventName, callbacks[index]);
       });
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 };
 
 export default useActivator;

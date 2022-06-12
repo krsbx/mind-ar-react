@@ -1,9 +1,9 @@
 import React, { useState, useEffect, createRef } from 'react';
 import Dropzone from 'dropzone';
 import { ICompilerData } from 'mind-ar-ts/src/image-target/utils/types/compiler';
-import useCompiler from 'utils/useCompiler';
-import { COMPILER_STATE } from 'utils/constant';
-import { CompilerState } from 'utils/interfaces';
+import useCompiler from '../utils/useCompiler';
+import { COMPILER_STATE } from '../utils/constant';
+import { CompilerState } from '../utils/interfaces';
 import VisualTab from './Compiler/VisualTab';
 import UploadTab from './Compiler/UploadTab';
 
