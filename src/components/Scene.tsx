@@ -1,24 +1,18 @@
+import _ from 'lodash';
 import React, { useRef } from 'react';
+import { Scene as AScene } from 'aframe';
 import { generateFaceProps, generateImageProps } from 'utils/defaultprops';
 import { concatProps, mergeRefs, propsConverter } from 'utils/handler';
 import { IScene } from 'utils/interfaces';
 
-const Scene = React.forwardRef<any, IScene>(({ children, ...props }, ref) => {
-  const sceneRef = useRef<any>(null);
-  const {
-    vrModeUI,
-    mindARImage,
-    orientationUI,
-    arEvents,
-    colorSpace,
-    mindARFace,
-    ...rest
-  } = props;
+const Scene = React.forwardRef<AScene, IScene>(({ children, ...props }, ref) => {
+  const sceneRef = useRef<AScene>(null);
+  const { vrModeUI, mindARImage, orientationUI, colorSpace, mindARFace, ...rest } = props;
 
   return React.createElement(
     'a-scene',
     {
-      ...propsConverter(rest),
+      ...propsConverter(_.omit(rest, 'arEvents')),
       ...{
         ...(mindARImage && {
           'mindar-image': concatProps(generateImageProps(mindARImage)),
@@ -28,9 +22,7 @@ const Scene = React.forwardRef<any, IScene>(({ children, ...props }, ref) => {
         }),
         ...(colorSpace && { 'color-space': colorSpace }),
         'vr-mode-ui': `enabled: ${vrModeUI ?? false}`,
-        'device-orientation-permission-ui': `enabled: ${
-          orientationUI ?? false
-        }`,
+        'device-orientation-permission-ui': `enabled: ${orientationUI ?? false}`,
         ref: mergeRefs(sceneRef, ref),
       },
     },

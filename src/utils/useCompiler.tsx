@@ -5,32 +5,24 @@ import { ICompilerData } from 'mind-ar-ts/src/image-target/utils/types/compiler'
 import { CompilerState, ReactSetter } from 'utils/interfaces';
 import { COMPILER_STATE } from './constant';
 
-const useCompiler = ({
-  setDataList,
-  setExportedBuffer,
-  setStep,
-  setPercentage,
-}: Params) => {
+const useCompiler = ({ setDataList, setExportedBuffer, setStep, setPercentage }: Params) => {
   // Create new compiler instance.
   const compiler = new window.MINDAR.IMAGE.Compiler();
 
-  const loadImage = useCallback(async (file) => {
+  const loadImage = useCallback(async (file: File) => {
     return new Promise<HTMLImageElement>((resolve, reject) => {
-      let img = new Image();
+      const img = new Image();
       img.onload = () => resolve(img);
       img.onerror = reject;
       img.src = URL.createObjectURL(file);
     });
   }, []);
 
-  const onDataReady = useCallback(
-    (dataList: ICompilerData[], exportedBuffer: Uint8Array) => {
-      setDataList(dataList);
-      setExportedBuffer(exportedBuffer);
-      setStep(COMPILER_STATE.COMPILED);
-    },
-    [] // eslint-disable-line react-hooks/exhaustive-deps
-  );
+  const onDataReady = useCallback((dataList: ICompilerData[], exportedBuffer: Uint8Array) => {
+    setDataList(dataList);
+    setExportedBuffer(exportedBuffer);
+    setStep(COMPILER_STATE.COMPILED);
+  }, []);
 
   const compileFiles = useCallback(async (files: File[]) => {
     const images: HTMLImageElement[] = await Promise.all(files.map(loadImage));
@@ -44,9 +36,9 @@ const useCompiler = ({
     const exportedBuffer = await compiler.exportData();
 
     onDataReady(dataList, exportedBuffer);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
-  const loadMindFile = useCallback(async (file) => {
+  const loadMindFile = useCallback(async (file: File) => {
     const reader = new FileReader();
 
     reader.onload = async function () {
@@ -59,7 +51,7 @@ const useCompiler = ({
     };
 
     reader.readAsArrayBuffer(file);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   const startHandler = useCallback(async (files: File[]) => {
     if (files.length === 0) {
@@ -75,7 +67,7 @@ const useCompiler = ({
     }
 
     compileFiles(files);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   return startHandler;
 };

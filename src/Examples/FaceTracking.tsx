@@ -15,21 +15,9 @@ const ExampleFaceTracking = () => {
         vrModeUI={false}
         stats
       >
-        <Camera
-          position={{ x: 0, y: 0, z: 0 }}
-          look-controls={false}
-          active={false}
-        />
+        <Camera position={{ x: 0, y: 0, z: 0 }} look-controls={false} active={false} />
         <Faces anchorIndex={1}>
-          <Sphere
-            radius={0.1}
-            color={'green'}
-            position={{
-              x: 0,
-              y: 0,
-              z: 0,
-            }}
-          />
+          <Sphere radius={0.1} color={'green'} position={[0, 0, 0]} />
         </Faces>
       </Scene>
     </FaceTracking>

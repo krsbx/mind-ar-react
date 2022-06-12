@@ -7,10 +7,12 @@ export interface IAxis {
   z: number;
 }
 
+export type FlatAxis = [number, number, number];
+
 export interface IAnimation {
   property?: string;
-  from?: IAxis | string;
-  to?: IAxis | string;
+  from?: IAxis | FlatAxis | string;
+  to?: IAxis | FlatAxis | string;
   delay?: number;
   dir?: 'normal' | 'alternate' | 'reverse';
   dur?: number;
@@ -25,9 +27,9 @@ export interface IAnimation {
 export interface IPrimitive {
   color?: string;
   material?: string;
-  position?: IAxis;
-  scale?: IAxis;
-  rotation?: IAxis;
+  position?: IAxis | FlatAxis | string;
+  scale?: IAxis | FlatAxis | string;
+  rotation?: IAxis | FlatAxis | string;
   animation?: IAnimation | IAnimation[];
   visible?: boolean;
   type: typeof PRIMITIVE_TYPES[keyof typeof PRIMITIVE_TYPES];
@@ -52,7 +54,7 @@ export interface IRadius {
   'radius-bottom'?: number;
 }
 
-export interface IBox extends Omit<IPrimitive, 'type'> {}
+export type IBox = Omit<IPrimitive, 'type'>;
 export interface ICircle extends Omit<IPrimitive, 'type'>, IRounded {
   radius: number;
   segments?: number;
@@ -60,13 +62,13 @@ export interface ICircle extends Omit<IPrimitive, 'type'>, IRounded {
 export interface ICone extends Omit<IPrimitive, 'type'>, IRounded, IRadius {
   'open-ended'?: boolean;
 }
-export interface ICylinder extends ICone {}
-export interface IPlane extends IBox {}
+export type ICylinder = ICone;
+export type IPlane = IBox;
 export interface ISphere extends ICircle {
   'phi-start'?: number;
   'phi-length'?: number;
 }
-export interface IGLTFModel extends Omit<IPrimitive, 'type'> {}
+export type IGLTFModel = Omit<IPrimitive, 'type'>;
 
 export interface IEntity extends Omit<IPrimitive, 'type'> {
   geometry?: string;
@@ -86,7 +88,7 @@ export interface IText {
   'letter-spacing': number;
   'line-height': number;
   opacity: number;
-  rotation: IAxis;
+  rotation: IAxis | FlatAxis | string;
   shader: string;
   side: 'front' | 'back' | 'double';
   'tab-size': number;
@@ -100,7 +102,6 @@ export interface IText {
 }
 
 export type AnimationKey = keyof IAnimation;
-export type AnimationType = Record<keyof IAnimation, any>;
 
 export interface IDefaultARProps {
   autoStart?: boolean;
@@ -153,7 +154,7 @@ export interface IFaces extends IEntity {
 }
 
 export interface ICamera {
-  position: IAxis;
+  position: IAxis | FlatAxis | string;
   'look-controls'?: boolean;
   active?: boolean;
 }

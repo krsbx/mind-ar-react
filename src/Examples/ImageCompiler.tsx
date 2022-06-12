@@ -11,9 +11,7 @@ const ImageCompiler = () => {
   const [dataList, setDataList] = useState<ICompilerData[]>([]);
   const [dropzone, setDropzone] = useState<Dropzone>();
   const [percentage, setPercentage] = useState<number | null>(null);
-  const [exportedBuffer, setExportedBuffer] = useState<Uint8Array>(
-    new Uint8Array()
-  );
+  const [exportedBuffer, setExportedBuffer] = useState<Uint8Array>(new Uint8Array());
   const [step, setStep] = useState<CompilerState>(COMPILER_STATE.IDLE);
   const refDropzone = createRef<HTMLDivElement>();
 
@@ -34,12 +32,12 @@ const ImageCompiler = () => {
     });
 
     setDropzone(myDropzone);
-  }, [refDropzone.current]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [refDropzone.current]);
 
-  return (
-    <>
-      {step === 'IDLE' && (
-        <>
+  const RenderTab = () => {
+    switch (step) {
+      case COMPILER_STATE.IDLE:
+        return (
           <UploadTab
             refDropzone={refDropzone}
             percentage={percentage}
@@ -49,13 +47,15 @@ const ImageCompiler = () => {
               startCompiler(dropzone.files as File[]);
             }}
           />
-        </>
-      )}
-      {step === 'COMPILED' && (
-        <VisualTab dataList={dataList} exportedBuffer={exportedBuffer} />
-      )}
-    </>
-  );
+        );
+      case COMPILER_STATE.COMPILED:
+        return <VisualTab dataList={dataList} exportedBuffer={exportedBuffer} />;
+      default:
+        return <></>;
+    }
+  };
+
+  return <RenderTab />;
 };
 
 export default ImageCompiler;

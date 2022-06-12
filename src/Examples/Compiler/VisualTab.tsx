@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  createRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useMemo, createRef, useState } from 'react';
 import { ICompilerData } from 'mind-ar-ts/src/image-target/utils/types/compiler';
 
 const VisualTab = ({
@@ -18,14 +12,23 @@ const VisualTab = ({
   const [targetIndex, setTargetIndex] = useState(0);
   const [keyframeIndex, setKeyframeIndex] = useState(0);
 
-  const drawPoint = useCallback((ctx, color, centerX, centerY, radius = 1) => {
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    ctx.fillStyle = color;
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = color;
-    ctx.stroke();
-  }, []);
+  const drawPoint = useCallback(
+    (
+      ctx: CanvasRenderingContext2D,
+      color: string | CanvasGradient | CanvasPattern,
+      centerX: number,
+      centerY: number,
+      radius = 1
+    ) => {
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      ctx.fillStyle = color;
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = color;
+      ctx.stroke();
+    },
+    []
+  );
 
   useEffect(() => {
     if (dataList.length === 0) return;
@@ -46,9 +49,7 @@ const VisualTab = ({
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const tData = new Uint8ClampedArray(
-      targetImage.width * targetImage.height * 4
-    );
+    const tData = new Uint8ClampedArray(targetImage.width * targetImage.height * 4);
 
     for (let i = 0; i < targetImage.data.length; i++) {
       tData[i * 4 + 0] = targetImage.data[i];
@@ -57,30 +58,17 @@ const VisualTab = ({
       tData[i * 4 + 3] = 255;
     }
 
-    const imageData = new ImageData(
-      tData,
-      targetImage.width,
-      targetImage.height
-    );
+    const imageData = new ImageData(tData, targetImage.width, targetImage.height);
 
     ctx.putImageData(imageData, 0, 0);
 
     for (let i = 0; i < matchingPoints.length; i++) {
       const point = matchingPoints[i];
-      drawPoint(
-        ctx,
-        '#ff0000',
-        Math.round(point.x),
-        Math.round(point.y),
-        point.scale
-      );
+      drawPoint(ctx, '#ff0000', Math.round(point.x), Math.round(point.y), point.scale);
     }
-  }, [dataList, targetIndex, keyframeIndex]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [dataList, targetIndex, keyframeIndex]);
 
-  const numTargetRange = useMemo(
-    () => dataList.map((data, index) => index),
-    [dataList]
-  );
+  const numTargetRange = useMemo(() => dataList.map((data, index) => index), [dataList]);
 
   const numScaleRange = useMemo(
     () => dataList?.[targetIndex]?.imageList?.map((data, index) => index) ?? [],
@@ -88,8 +76,7 @@ const VisualTab = ({
   );
 
   const canvasStyle = useMemo(() => {
-    const width =
-      100 * (dataList?.[targetIndex]?.imageList?.[keyframeIndex]?.scale ?? 1);
+    const width = 100 * (dataList?.[targetIndex]?.imageList?.[keyframeIndex]?.scale ?? 1);
 
     return {
       width: width * 0.95 + '%',

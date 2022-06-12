@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash';
 import { ANIMATION_PROPERTIES } from './constant';
 import { AnimationKey, IAnimation } from './interfaces';
@@ -11,7 +12,7 @@ import { AnimationKey, IAnimation } from './interfaces';
 const singleAnimationHandler = (props: IAnimation): string => {
   let animationParams = '';
 
-  _.forEach(props, (value: any, key: string) => {
+  _.forEach(props, (_value, key: string) => {
     if (_.includes(ANIMATION_PROPERTIES, key)) {
       const currentData = props[key as AnimationKey];
 
@@ -38,10 +39,7 @@ const multipleAnimationHandler = (props: IAnimation[]) => {
     animationParams.push(singleAnimationHandler(value));
   });
 
-  const animationObject: Record<
-    string,
-    ReturnType<typeof singleAnimationHandler>
-  > = {};
+  const animationObject: Record<string, ReturnType<typeof singleAnimationHandler>> = {};
 
   _.forEach(animationParams, (value: string, index: number) => {
     const animationName = `animation${index === 0 ? '' : `__${index + 1}`}`;
@@ -58,7 +56,7 @@ const multipleAnimationHandler = (props: IAnimation[]) => {
  * @returns animationParams
  */
 export const getAnimations = (props: IAnimation | IAnimation[]) => {
-  let animationParams = null;
+  let animationParams: Record<string, string> = {};
 
   if (_.isArray(props)) {
     // Multiple animations
