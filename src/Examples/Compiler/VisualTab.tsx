@@ -155,7 +155,7 @@ const VisualTab = ({
           ))}
         </ul>
       </div>
-      <div style={{ height: '70%', overflow: 'auto', marginBottom: '20px' }}>
+      <div style={{ height: '50%', overflow: 'auto', marginBottom: '20px' }}>
         <div
           style={{
             display: 'flex',

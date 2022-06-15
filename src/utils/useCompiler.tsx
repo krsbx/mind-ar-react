@@ -1,11 +1,16 @@
 import 'mind-ar-ts';
 import 'mind-ar-ts/dist/mindar-image.prod';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { ICompilerData } from 'mind-ar-ts/src/image-target/utils/types/compiler';
-import { CompilerState, ReactSetter } from './interfaces';
+import { CompilerState } from './interfaces';
 import { COMPILER_STATE } from './constant';
 
-const useCompiler = ({ setDataList, setExportedBuffer, setStep, setPercentage }: Params) => {
+const useCompiler = () => {
+  const [percentage, setPercentage] = useState<number | null>(null);
+  const [dataList, setDataList] = useState<ICompilerData[]>([]);
+  const [exportedBuffer, setExportedBuffer] = useState<Uint8Array>(new Uint8Array());
+  const [step, setStep] = useState<CompilerState>(COMPILER_STATE.IDLE);
+
   // Create new compiler instance.
   const compiler = new window.MINDAR.IMAGE.Compiler();
 
@@ -53,7 +58,7 @@ const useCompiler = ({ setDataList, setExportedBuffer, setStep, setPercentage }:
     reader.readAsArrayBuffer(file);
   }, []);
 
-  const startHandler = useCallback(async (files: File[]) => {
+  const startCompiler = useCallback(async (files: File[]) => {
     if (files.length === 0) {
       console.error('please select images.');
       return;
@@ -69,14 +74,13 @@ const useCompiler = ({ setDataList, setExportedBuffer, setStep, setPercentage }:
     compileFiles(files);
   }, []);
 
-  return startHandler;
-};
-
-type Params = {
-  setDataList: ReactSetter<ICompilerData[]>;
-  setExportedBuffer: ReactSetter<Uint8Array>;
-  setPercentage: ReactSetter<number | null>;
-  setStep: ReactSetter<CompilerState>;
+  return {
+    startCompiler,
+    exportedBuffer,
+    percentage,
+    dataList,
+    step,
+  };
 };
 
 export default useCompiler;
