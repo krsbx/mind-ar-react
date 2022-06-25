@@ -1,5 +1,5 @@
 import React from 'react';
-import { Entity, Scene as _Scene } from 'aframe-react-component/dist/utils/interface';
+import { Entity as _Entity, Scene as _Scene } from 'aframe-react-component/dist/utils/interface';
 import { COMPILER_STATE } from './constant';
 
 export type DefaultARProps = {
@@ -26,17 +26,37 @@ export type MindARFace = DefaultARProps & {
 };
 
 export type Scene = _Scene & {
+  'gesture-detector'?: boolean;
+  'mouse-detector'?: boolean;
   mindARImage?: MindARImage;
   mindARFace?: MindARFace;
   children?: React.ReactNode;
   arEvents?: IAREvents[] | IAREvents;
 };
 
-export type Marker = Entity & {
+export type GestureRotation = {
+  enabled: boolean;
+  rotationFactor: number;
+};
+
+export type GestureScale = {
+  enabled: boolean;
+  minScale: number;
+  maxScale: number;
+};
+
+export type Marker = _Entity & {
   targetIndex: number;
 };
 
-export type Faces = Entity & {
+export type Entity = _Entity & {
+  'gesture-rotation'?: GestureRotation;
+  'mouse-rotation'?: GestureRotation;
+  'gesture-scale'?: GestureScale;
+  'mouse-scale'?: GestureScale;
+};
+
+export type Faces = _Entity & {
   anchorIndex?: number;
 };
 

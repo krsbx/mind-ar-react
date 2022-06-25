@@ -1,8 +1,9 @@
-import { Scene, Faces, Marker } from './components';
+import { Entity, Faces, Marker, Scene } from './components';
 import FaceTracking from './components/AR/FaceTracking';
 import ImageTracking from './components/AR/ImageTracking';
 
 const Components = {
+  Entity,
   Faces,
   Marker,
   Scene,
