@@ -1,9 +1,9 @@
 import React from 'react';
+import { Entity } from 'aframe-react-component';
 import { Entity as AEntity } from 'aframe';
-import { IFaces } from '../utils/interfaces';
-import Entity from './Entity';
+import { Faces as _Faces } from '../utils/interfaces';
 
-const Faces = React.forwardRef<AEntity, IFaces>(({ anchorIndex, ...props }, ref) => (
+const Faces = React.forwardRef<AEntity, _Faces>(({ anchorIndex, ...props }, ref) => (
   <Entity {...props} mindar-face-target={`anchorIndex: ${anchorIndex}`} ref={ref} />
 ));
 
