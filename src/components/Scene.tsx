@@ -8,11 +8,19 @@ import { Scene as _Scene } from '../utils/interfaces';
 
 const Scene = React.forwardRef<AScene, _Scene>(({ children, ...props }, ref) => {
   const sceneRef = useRef<AScene>(null);
-  const { mindARImage, mindARFace, ...rest } = props;
+  const {
+    mindARImage,
+    mindARFace,
+    'gesture-detector': gestureDetector,
+    'mouse-detector': mouseDetector,
+    ...rest
+  } = props;
 
   return (
     <SceneComponent
       {...rest}
+      gesture-detector={gestureDetector}
+      mouse-detector={mouseDetector}
       {...(mindARImage && {
         'mindar-image': getAframeProps(generateImageProps(mindARImage)),
       })}
