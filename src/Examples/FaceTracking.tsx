@@ -1,7 +1,7 @@
 import React from 'react';
+import { Camera, Sphere } from 'aframe-react-component';
 import FaceTracking from '../components/AR/FaceTracking';
-import { Faces, Camera, Scene } from '../components';
-import { Sphere } from '../components/Primitive';
+import { Faces, Scene } from '../components';
 
 const ExampleFaceTracking = () => {
   return (

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Assets, { Items } from '../components/Assets';
+import { Camera, GLTFModel, Plane, Assets, Item } from 'aframe-react-component';
 import ImageTracking from '../components/AR/ImageTracking';
-import { Camera, Marker, Scene } from '../components';
-import { GLTFModel, Plane } from '../components/Primitive';
+import { Marker, Scene } from '../components';
 
 const ExampleImageTracking = () => {
   const [started, setStarted] = useState(false);
@@ -29,7 +28,7 @@ const ExampleImageTracking = () => {
               src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/examples/image-tracking/assets/card-example/card.png"
               alt=""
             />
-            <Items
+            <Item
               id="avatarModel"
               src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/examples/image-tracking/assets/card-example/softmind/scene.gltf"
             />
