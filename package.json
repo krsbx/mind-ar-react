@@ -15,6 +15,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
+    "aframe-react-component": "^0.1.0-beta1a",
     "lodash": "^4.17.21",
     "mind-ar-ts": "^0.5.2-beta2a"
   },
