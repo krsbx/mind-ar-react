@@ -16,5 +16,8 @@ const MindAR = {
 };
 
 export { FaceTracking, ImageTracking, Components as MindAR };
+export { default as useCompiler } from './utils/useCompiler';
+export type { CompilerState } from './utils/interfaces';
+export * from './utils/constant';
 
 export default MindAR;
