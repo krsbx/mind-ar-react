@@ -10,6 +10,8 @@ export type DefaultARProps = {
   filterMinCF?: number;
   filterBeta?: number;
   shouldFaceUser?: boolean;
+  _positionSettings?: string;
+  _positionZIndex?: number;
 };
 
 export type MindARImage = DefaultARProps & {

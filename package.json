@@ -1,6 +1,6 @@
 {
   "name": "mind-ar-react",
-  "version": "0.1.0-beta2",
+  "version": "0.1.0-beta3",
   "main": "dist/index.js",
   "scripts": {
     "dev": "vite",
@@ -17,7 +17,7 @@
   "dependencies": {
     "aframe-react-component": "^0.1.0-beta2a",
     "lodash": "^4.17.21",
-    "mind-ar-ts": "^0.5.2-beta2a"
+    "mind-ar-ts": "^0.5.2-beta2b"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
