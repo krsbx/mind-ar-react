@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Camera, GLTFModel, Plane, Assets, Item } from 'aframe-react-component';
-import ImageTracking from '../components/AR/ImageTracking';
+import ImageTracking from '../provider/ImageTracking';
 import { Entity, Marker, Scene } from '../components';
 
 const ExampleImageTracking = () => {

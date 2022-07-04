@@ -1,6 +1,6 @@
 {
   "name": "mind-ar-react",
-  "version": "0.1.0-beta3a",
+  "version": "0.1.0-beta3c",
   "main": "dist/index.js",
   "scripts": {
     "dev": "vite",
@@ -15,9 +15,9 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "aframe-react-component": "^0.1.0-beta2a",
+    "aframe-react-component": "^0.1.0-beta2b",
     "lodash": "^4.17.21",
-    "mind-ar-ts": "^0.5.2-beta2b"
+    "mind-ar-ts": "^0.5.2-beta2c"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
@@ -33,6 +33,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.30.1",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
     "react-dropzone": "^14.2.1",

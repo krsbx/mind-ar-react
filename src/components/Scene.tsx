@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { useEffect, useRef } from 'react';
 import { Scene as AScene, SystemDefinition } from 'aframe';
 import { Scene as SceneComponent } from 'aframe-react-component';
@@ -20,20 +21,16 @@ const Scene = React.forwardRef<AScene, _Scene>(({ children, ...props }, ref) => 
   } = props;
 
   useEffect(() => {
-    if (!sceneRef.current) return;
-
-    if (!mindARImage || !mindARFace) return;
-
-    const arSystem = sceneRef.current.systems[
+    const arSystem = sceneRef.current?.systems[
       mindARImage ? AR_COMPONENT_NAME.IMAGE.IMAGE_SYSTEM : AR_COMPONENT_NAME.FACE.FACE_SYSTEM
-    ] as SystemDefinition<IMindARImageSystem | IMindARFaceSystem>;
+    ] as SystemDefinition<IMindARImageSystem | IMindARFaceSystem> | undefined;
 
     return () => {
       if (!arSystem) return;
 
       arSystem.stop();
     };
-  }, [sceneRef.current]);
+  }, []);
 
   return (
     <SceneComponent
