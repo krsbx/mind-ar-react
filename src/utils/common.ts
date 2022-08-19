@@ -1,5 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { VIDEO_ID } from './constant';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const mergeRefs = (...refs: any[]) => {
   const filteredRefs = refs.filter(Boolean);
 
@@ -7,6 +8,7 @@ export const mergeRefs = (...refs: any[]) => {
 
   if (filteredRefs.length === 0) return filteredRefs[0];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (inst: any) => {
     for (const ref of filteredRefs) {
       if (typeof ref === 'function') {
@@ -16,4 +18,22 @@ export const mergeRefs = (...refs: any[]) => {
       }
     }
   };
+};
+
+export const cleanupVideo = () => {
+  const video = document.getElementById(VIDEO_ID) as HTMLVideoElement;
+
+  if (!video) return;
+
+  const { srcObject } = video;
+
+  if (!srcObject) return;
+
+  const tracks = (srcObject as MediaStream).getTracks();
+
+  tracks.forEach(function (track) {
+    track.stop();
+  });
+
+  video.remove();
 };

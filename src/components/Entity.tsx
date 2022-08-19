@@ -33,4 +33,6 @@ const Entity = React.forwardRef<AEntity, _Entity>((props, ref) => {
   );
 });
 
+Entity.displayName = 'AREntity';
+
 export default Entity;

@@ -1,6 +1,6 @@
 import { DefaultARProps, MindARFace, MindARImage } from './interfaces';
 
-const generateDefaultProps = (mindARDefault: DefaultARProps, isFace = false) => {
+const generateDefaultProps = (mindARDefault: DefaultARProps, isFace: boolean) => {
   if (mindARDefault?.autoStart === undefined) mindARDefault.autoStart = true;
   if (mindARDefault?.uiLoading === undefined) mindARDefault.uiLoading = 'yes';
   if (mindARDefault?.uiScanning === undefined) mindARDefault.uiScanning = 'yes';
@@ -15,7 +15,7 @@ const generateDefaultProps = (mindARDefault: DefaultARProps, isFace = false) => 
 };
 
 export const generateImageProps = (mindARImage: MindARImage) => {
-  generateDefaultProps(mindARImage);
+  generateDefaultProps(mindARImage, false);
 
   if (mindARImage?.maxTrack === undefined) mindARImage.maxTrack = 1;
   if (mindARImage?.missTolerance === undefined) mindARImage.missTolerance = -1;
