@@ -64,6 +64,7 @@ export type Faces = _Entity & {
 
 export type IAREvents = {
   eventName: 'arReady' | 'arError' | 'targetFound' | 'targetLost';
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   callbacks: (e: any) => void;
 };
 

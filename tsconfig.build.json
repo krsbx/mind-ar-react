@@ -5,7 +5,8 @@
     "moduleResolution": "NodeNext",
     "outDir": "dist",
     "noEmit": false,
-    "declaration": true
+    "declaration": true,
+    "jsx": "react-jsx",
   },
   "include": [
     "src/index.ts",

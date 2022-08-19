@@ -16,10 +16,17 @@ npm i mind-ar-react
 npm i aframe
 ```
 
+- Install aframe-react-component, if npm not installing it for you
+
+```
+npm i aframe-react-component
+```
+
 - Import the components in your React projects
 
 ```js
-import { Scene, Camera, Box } from 'mind-ar-react';
+import { Scene } from 'mind-ar-react';
+import { Camera, Box } from 'aframe-react-component';
 
 
 return (
@@ -29,8 +36,12 @@ return (
 
 # Usage
 
-:arrow_right: Please see how to use it by seeing the example one in [Examples](./src/Examples)
+:arrow_right: Please see how to use it by seeing the example one in [Examples (from src)](./src/examples) / [Examples (from dist)](./dist/examples)
+
+# Keep in Mind
+
+Use the `Scene` and `Entity` component that `mind-ar-react` provide instead the one that `aframe-react-component` provide.
 
 # :warning: Gesture/Mouse Actions :warning:
 
-For any gesture/mouse actions, the example how to use it can be found in [`src/Examples/ImageTracking.tsx`](./src/Examples/ImageTracking.tsx). In the example files, the only actions that works is the Scale with mouse wheel, this happen 'cause of the DOM things. Any PR to fix this examples are welcome.
+For any gesture/mouse actions, the example how to use it can be found in [`src/examples/ImageTracking.tsx`](./src/examples/ImageTracking.tsx). In the example files, the only actions that works is the Scale with mouse wheel, this happen 'cause of the DOM things. Any PR to fix this examples are welcome.

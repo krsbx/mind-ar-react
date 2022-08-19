@@ -7,4 +7,6 @@ const Faces = React.forwardRef<AEntity, _Faces>(({ anchorIndex, ...props }, ref)
   <Entity {...props} mindar-face-target={`anchorIndex: ${anchorIndex}`} ref={ref} />
 ));
 
+Faces.displayName = 'Faces';
+
 export default Faces;

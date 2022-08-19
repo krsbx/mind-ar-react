@@ -1,10 +1,10 @@
 {
   "name": "mind-ar-react",
-  "version": "0.1.0-beta3c",
+  "version": "0.1.1",
   "main": "dist/index.js",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build:vite": "tsc && vite build",
     "build:prod": "tsc --project tsconfig.build.json",
     "preview": "vite preview",
     "prepare": "husky install"
@@ -15,9 +15,9 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "aframe-react-component": "^0.1.0-beta2b",
+    "aframe-react-component": "^0.1.1",
     "lodash": "^4.17.21",
-    "mind-ar-ts": "^0.5.2-beta2c"
+    "mind-ar-ts": "^0.5.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",

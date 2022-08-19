@@ -7,4 +7,6 @@ const Marker = React.forwardRef<AEntity, _Marker>(({ targetIndex, ...props }, re
   <Entity {...props} mindar-image-target={`targetIndex: ${targetIndex}`} ref={ref} />
 ));
 
+Marker.displayName = 'Marker';
+
 export default Marker;

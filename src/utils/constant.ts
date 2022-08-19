@@ -18,3 +18,5 @@ export const COMPILER_STATE = {
   COMPILING: 'COMPILING',
   COMPILED: 'COMPILED',
 } as const;
+
+export const VIDEO_ID = 'mindar-video';
