@@ -17,7 +17,7 @@
   "dependencies": {
     "aframe-react-component": "^0.1.1",
     "lodash": "^4.17.21",
-    "mind-ar-ts": "^0.5.4"
+    "mind-ar-ts": "^0.5.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
