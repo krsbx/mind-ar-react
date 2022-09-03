@@ -14,7 +14,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm install @techstark/opencv-js
       - run: npm install
       - run: npm run build:prod
       - uses: JS-DevTools/npm-publish@v1
