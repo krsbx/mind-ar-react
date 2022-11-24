@@ -22,24 +22,25 @@ const useARManager = (sceneRef: React.MutableRefObject<AScene | undefined>) => {
 
   useEffect(() => {
     if (!sceneRef.current) return;
+    sceneRef.current.addEventListener("loaded",()=>{
+      let arSystems = AR_COMPONENT_NAME.IMAGE.IMAGE_SYSTEM;
+      const systemKeys = Object.keys(sceneRef.current?.systems);
 
-    let arSystems = AR_COMPONENT_NAME.IMAGE.IMAGE_SYSTEM;
-    const systemKeys = Object.keys(sceneRef.current?.systems);
-
-    for (const key of systemKeys) {
-      switch (key) {
-        case AR_COMPONENT_NAME.FACE.FACE_SYSTEM:
-          arSystems = AR_COMPONENT_NAME.FACE.FACE_SYSTEM;
-          break;
-        case AR_COMPONENT_NAME.IMAGE.IMAGE_SYSTEM:
-          arSystems = AR_COMPONENT_NAME.IMAGE.IMAGE_SYSTEM;
-          break;
+      for (const key of systemKeys) {
+        switch (key) {
+          case AR_COMPONENT_NAME.FACE.FACE_SYSTEM:
+            arSystems = AR_COMPONENT_NAME.FACE.FACE_SYSTEM;
+            break;
+          case AR_COMPONENT_NAME.IMAGE.IMAGE_SYSTEM:
+            arSystems = AR_COMPONENT_NAME.IMAGE.IMAGE_SYSTEM;
+            break;
+        }
       }
-    }
 
-    arSystem.current = sceneRef.current.systems[arSystems] as SystemDefinition<
-      IMindARImageSystem | IMindARFaceSystem
-    >;
+      arSystem.current = sceneRef.current.systems[arSystems] as SystemDefinition<
+        IMindARImageSystem | IMindARFaceSystem
+      >;
+    })
 
     return () => {
       stopAR();
